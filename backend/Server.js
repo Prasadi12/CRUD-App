@@ -1,14 +1,14 @@
 const express = require('express')
 const mongoose = require('mongoose')
 const cors = require('cors')
-const route = require('./routes/StudentRoute')
+const routes = require('./routes/StudentRoute')
 require("dotenv").config()
 const app = express()
 const PORT = process.env.PORT | 5000
 
 app.use(express.json())
 app.use(cors())
-app.use(route())
+app.use(routes)
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
@@ -19,4 +19,6 @@ mongoose.connect(process.env.MONGO_URI)
 }).catch((error) => {
     console.log(error)
 })
+
+
 
