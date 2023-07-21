@@ -8,10 +8,11 @@ const app = express();
 
 app.use(express.json())
 app.use(cors())
+app.use(routes)
 
-app.get('/', (req,res) => {
-    res.send('Hello Prasadi..!')
-})
+// app.get('/', (req,res) => {
+//     res.send('Hello Prasadi..!')
+// })
 
 mongoose.connect(process.env.MONGO_URI)
 .then(()=>{
@@ -24,4 +25,3 @@ mongoose.connect(process.env.MONGO_URI)
     console.log(error)
 })
 
-app.use(routes)
