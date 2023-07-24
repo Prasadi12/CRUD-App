@@ -34,7 +34,10 @@ module.exports.createStudent = async(req,res) =>{
 module.exports.updateStudent = async(req,res) =>{
     try {
         const {id} = req.params;
-        const Student = await StudentModel.findByIdAndUpdate(id, req.body)
+        const Student = await StudentModel.findByIdAndUpdate({_id:id}, {
+            name: req.body.name, 
+            age: req.body.age
+        })
         if(!Student){
             res.status(404).json(`Can not find any student with id ${id}`)
         }
@@ -47,7 +50,7 @@ module.exports.updateStudent = async(req,res) =>{
 module.exports.deleteStudent = async(req,res) =>{
     try {
         const {id} = req.params;
-        const Student = await StudentModel.findByIdAndDelete(id)
+        const Student = await StudentModel.findByIdAndDelete({_id:id})
         if(!Student){
             res.status(404).json(`Can not find any student with id ${id}`)
         }
