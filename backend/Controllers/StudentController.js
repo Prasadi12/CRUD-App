@@ -12,7 +12,7 @@ module.exports.getStudents = async(req,res) =>{
 module.exports.getStudent = async(req,res) => {
     try {
         const {id} = req.params;
-        const Student = await StudentModel.findById(id)
+        const Student = await StudentModel.findById({_id:id})
         if(!Student){
             return res.status(404).json(`Can not find any student with id ${id}`)
         }
